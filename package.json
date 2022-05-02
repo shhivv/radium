@@ -1,0 +1,9 @@
+{
+  "name": "radium",
+  "version": "1.0.0",
+  "description": "Expose your server stats to a RESTful api in seconds",
+  "main": "dist/index.js",
+  "repository": "https://github.com/ffaanngg/radium",
+  "author": "Shiv",
+  "license": "MIT"
+}
