@@ -23,6 +23,8 @@ export default new Command()
         `
         You can access information about your server at anytime through the RESTful API at [radium.shivs.me/${ctx.guildId}](https://radium.shivs.me/${ctx.guildId}).
 
+        You can specify the scope of data needed by the \`include\` query parameter. The 3 options are \`minimum\`, \`basic\` and \`all\`. If a query paramter is not specified, it defaults to \`basic\`.
+
         If you wish to not expose information about your server on the API, simply kick the bot and you are good to go. No data is stored by the bot itself but other applications may track and store data exposed by the API.
 
         Developed by \`shiv#6819\` using \`discord.js(${version})\`
