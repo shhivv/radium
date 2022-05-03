@@ -101,7 +101,7 @@ export default function (client: Client) {
     let include = req.query.include ?? "basic";
 
     if (!["minimum", "basic", "all"].includes(include)) {
-      include = "minimum";
+      include = "basic";
     }
 
     const bare = {
