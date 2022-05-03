@@ -48,7 +48,7 @@ export default new Command()
       new MessageButton()
         .setStyle("LINK")
         .setLabel("Join our support server")
-        .setURL("https://discord.gg/hXXBmqMp2H")
+        .setURL("https://discord.gg/zEaeb7p58y")
     );
     await ctx.reply({ embeds: [embed], components:[row] });
     return true;
