@@ -2,7 +2,7 @@ import { REST } from "@discordjs/rest";
 import { Routes } from "discord-api-types/v9";
 
 import { Client, ClientOptions, CommandInteraction } from "discord.js";
-import startApi from "./api";
+import startApi from "../api";
 import Command from "./command";
 
 export default class Radium extends Client {
