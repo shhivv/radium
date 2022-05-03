@@ -14,8 +14,7 @@ async function main() {
     .parseSync();
 
   const { token, devGuild, clientId, deploy } = flags;
-  const client = new Radium(clientOptions)
-    .registerCommand(help)
+  const client = new Radium(clientOptions).registerCommand(help);
 
   if (deploy) {
     await client.deployCommands(token, devGuild, clientId);

@@ -6,22 +6,21 @@ export default new Command()
   .setName("help")
   .setDescription("🛠️ Help on using the bot")
   .setCallback(async (ctx) => {
-
-    if(!ctx.guild){
-        ctx.reply({
-            content: "This command cannot be used in DMs",
-            ephemeral: true
-        })
-        return false;
+    if (!ctx.guild) {
+      ctx.reply({
+        content: "This command cannot be used in DMs",
+        ephemeral: true,
+      });
+      return false;
     }
     const embed = new MessageEmbed()
       .setTitle("Radium")
-      .setThumbnail(
-        ctx.client.application?.iconURL() ?? ""
-      )
+      .setThumbnail(ctx.client.application?.iconURL() ?? "")
       .setDescription(
         `
-        You can access information about your server at anytime through the RESTful API at [radium.shivs.me/${ctx.guildId}](https://radium.shivs.me/${ctx.guildId}).
+        You can access information about your server at anytime through the RESTful API at [radium.shivs.me/${
+          ctx.guildId
+        }](https://radium.shivs.me/${ctx.guildId}).
 
         You can specify the scope of data needed by the \`include\` query parameter. The 3 options are \`minimum\`, \`basic\` and \`all\`. If a query paramter is not specified, it defaults to \`basic\`.
 
@@ -30,9 +29,9 @@ export default new Command()
         Developed by \`shiv#6819\` using \`discord.js(${version})\`
 
         Bot has been running since ${time(
-            // @ts-ignore
-            ctx.client.startedAt,
-            "R"
+          // @ts-ignore
+          ctx.client.startedAt,
+          "R"
         )} and has a websocket latency of \`${ctx.client.ws.ping}ms\`.
       `
       )

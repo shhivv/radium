@@ -21,7 +21,6 @@ export default class Radium extends Client {
       console.log(`Booting up with profile: ${this.user?.tag}`);
       this.ready = true;
       startApi(this);
-      
     });
 
     this.on("interactionCreate", async (interaction) => {
@@ -35,8 +34,8 @@ export default class Radium extends Client {
     });
     process.on("uncaughtRejection", console.error);
 
-    this.on("debug",console.debug);
-    this.on("warn",console.warn);
+    this.on("debug", console.debug);
+    this.on("warn", console.warn);
   }
 
   registerCommand(command: Command) {
