@@ -1,8 +1,7 @@
 import { REST } from "@discordjs/rest";
 import { Routes } from "discord-api-types/v9";
-
 import { Client, ClientOptions, CommandInteraction } from "discord.js";
-import startApi from "../api";
+import startWebserver from "../api";
 import Command from "./command";
 
 export default class Radium extends Client {
@@ -20,7 +19,7 @@ export default class Radium extends Client {
     this.once("ready", () => {
       console.log(`Booting up with profile: ${this.user?.tag}`);
       this.ready = true;
-      startApi(this);
+      startWebserver(this);
     });
 
     this.on("interactionCreate", async (interaction) => {

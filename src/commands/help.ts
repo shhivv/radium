@@ -1,5 +1,10 @@
 import { time } from "@discordjs/builders";
-import { MessageEmbed, version } from "discord.js";
+import {
+  MessageActionRow,
+  MessageButton,
+  MessageEmbed,
+  version,
+} from "discord.js";
 import Command from "../structures/command";
 
 export default new Command()
@@ -13,18 +18,20 @@ export default new Command()
       });
       return false;
     }
+
     const embed = new MessageEmbed()
       .setTitle("Radium")
-      .setThumbnail(ctx.client.application?.iconURL() ?? "")
       .setDescription(
         `
-        You can access information about your server at anytime through the RESTful API at [radium.shivs.me/${
+        Radium exposes information about your server to a RESTful API at \`radium.shivs.me/:guildId\`. 
+
+        **The URL for this server is [radium.shivs.me/${ctx.guildId}](https://radium.shivs.me/${
           ctx.guildId
-        }](https://radium.shivs.me/${ctx.guildId}).
+        }).**
 
-        You can specify the scope of data needed by the \`include\` query parameter. The 3 options are \`minimum\`, \`basic\` and \`all\`. If a query paramter is not specified, it defaults to \`basic\`.
+        You can specify the scope of data required by the \`include\` query parameter. The 3 options are \`minimum\`, \`basic\` and \`all\`. If a query paramter is not specified, it defaults to \`basic\`.
 
-        If you wish to not expose information about your server on the API, simply kick the bot and you are good to go. No data is stored by the bot itself but other applications may track and store data exposed by the API.
+        If you wish to stop exposing this server on the API, simply kick the bot and you are good to go. No data is stored by the bot itself but other applications may track and store data exposed by the API.
 
         Developed by \`shiv#6819\` using \`discord.js(${version})\`
 
@@ -36,6 +43,13 @@ export default new Command()
       `
       )
       .setColor("#4ade80");
-    await ctx.reply({ embeds: [embed] });
+
+    const row = new MessageActionRow().addComponents(
+      new MessageButton()
+        .setStyle("LINK")
+        .setLabel("Join our support server")
+        .setURL("https://discord.gg/hXXBmqMp2H")
+    );
+    await ctx.reply({ embeds: [embed], components:[row] });
     return true;
   });
