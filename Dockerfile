@@ -10,5 +10,5 @@ RUN yarn install
 
 ADD src ./src
 
-CMD ["yarn","start --deploy"]
+CMD ["yarn","start","--deploy"]
 
