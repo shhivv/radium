@@ -1,6 +1,6 @@
 # Radium
 
-| :bangbang: | I would recommend that you don't run your own instance of this bot and instead invite the main instance of the bot using this invite: https://inv.shivs.me |
+| :bangbang: | I would recommend that you don't run your own instance of this bot and instead invite the main instance of the bot using this invite: [inv.shivs.me](https://inv.shivs.me) |
 | :--------: | :------------------------------------ |
 
 
