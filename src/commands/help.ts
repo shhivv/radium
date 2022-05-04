@@ -25,9 +25,9 @@ export default new Command()
         `
         Radium exposes information about your server to a RESTful API at \`radium.shivs.me/:guildId\`. 
 
-        **The URL for this server is [radium.shivs.me/${ctx.guildId}](https://radium.shivs.me/${
+        **The URL for this server is [radium.shivs.me/${
           ctx.guildId
-        }).**
+        }](https://radium.shivs.me/${ctx.guildId}).**
 
         You can specify the scope of data required by the \`include\` query parameter. The 3 options are \`minimum\`, \`basic\` and \`all\`. If a query paramter is not specified, it defaults to \`basic\`.
 
@@ -50,6 +50,6 @@ export default new Command()
         .setLabel("Join our support server")
         .setURL("https://discord.gg/zEaeb7p58y")
     );
-    await ctx.reply({ embeds: [embed], components:[row] });
+    await ctx.reply({ embeds: [embed], components: [row] });
     return true;
   });

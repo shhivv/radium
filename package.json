@@ -23,6 +23,7 @@
     "typescript": "^4.6.4"
   },
   "scripts": {
-    "start": "tsc && node -r dotenv/config ./dist/index.js"
+    "start": "tsc && node -r dotenv/config ./dist/index.js",
+    "format": "yarn prettier --write ."
   }
 }

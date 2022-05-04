@@ -118,15 +118,14 @@ export default function (client: Client) {
   });
 
   const port = process.env.PORT ?? 8000;
-  const addr = process.env.ADDR ?? "127.0.0.1"
+  const addr = process.env.ADDR ?? "127.0.0.1";
 
   api.listen(port, addr, (err, addr) => {
-    if(err){
-      console.error(err)
-      process.exit(1)
-    }else{
-      console.log(`Webserver listening on ${addr}:${port}`)
+    if (err) {
+      console.error(err);
+      process.exit(1);
+    } else {
+      console.log(`Webserver listening on ${addr}:${port}`);
     }
   });
-
 }
