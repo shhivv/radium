@@ -48,7 +48,11 @@ export default new Command()
       new MessageButton()
         .setStyle("LINK")
         .setLabel("Join our support server")
-        .setURL("https://discord.gg/zEaeb7p58y")
+        .setURL("https://discord.gg/zEaeb7p58y"),
+      new MessageButton()
+        .setStyle("LINK")
+        .setLabel("Invite me")
+        .setURL(`https://discord.com/oauth2/authorize?client_id=${ctx.applicationId}&permissions=2048&scope=bot%20applications.commands`)
     );
     await ctx.reply({ embeds: [embed], components: [row] });
     return true;
