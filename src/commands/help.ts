@@ -42,7 +42,10 @@ export default new Command()
         )} and has a websocket latency of \`${ctx.client.ws.ping}ms\`.
       `
       )
-      .setColor("#4ade80");
+      .setColor("#4ade80")
+      .setFooter({
+        text: `Currently monitoring ${ctx.client.guilds.cache.size} guilds`
+      });
 
     const row = new MessageActionRow().addComponents(
       new MessageButton()
