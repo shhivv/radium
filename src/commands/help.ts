@@ -32,19 +32,22 @@ export default new Command()
         `
         Radium exposes information about your server to a RESTful API at [\`radium.shivs.me/:guildId\`](https://radium.shivs.me). By adding this bot to your server, you consent to your server being exposed over the API. If you change your mind, you can kick this bot and all data will be cleared.
 
-        **\`🛠️\` Usage**
+        >>> **\`🛠️\` Usage**
+
+         The amount of data required can be controlled by the \`include\` query parameter. If it is not specified, it defaults to \`basic\`. The 3 urls are listed below.
         
-        > The amount of data required can be controlled by the \`include\` query parameter. If it is not specified, it defaults to \`basic\`. The 3 urls are listed below.
+         **minimum** - [\`radium.shivs.me/${guildId}?include=minimum\`](https://radium.shivs.me/${guildId}?include=minimum)
+         **basic** - [\`radium.shivs.me/${guildId}\`](https://radium.shivs.me/${guildId})
+         **all** - [\`radium.shivs.me/${guildId}?include=all\`](https://radium.shivs.me/${guildId}?include=all)
 
-        > **minimum** - [\`radium.shivs.me/${guildId}?include=minimum\`](https://radium.shivs.me/${guildId}?include=minimum)
-        > **basic** - [\`radium.shivs.me/${guildId}\`](https://radium.shivs.me/${guildId})
-        > **all** - [\`radium.shivs.me/${guildId}?include=all\`](https://radium.shivs.me/${guildId}?include=all)
+         
+         **\`⚡\` Info**
 
-        Currently monitoring \`${
+         Currently monitoring \`${
           ctx.client.guilds.cache.size
-        }\` guilds and can see \`${totalUsers}\` users.
-        Developed by \`shiv#6819\` using \`discord.js(${version})\`
-        Bot has been running since ${time(
+         }\` guilds and can see \`${totalUsers}\` users.
+         Developed by \`shiv#6819\` using \`discord.js(${version})\`
+         Bot has been running since ${time(
           // @ts-ignore
           ctx.client.startedAt,
           "R"
