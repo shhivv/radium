@@ -19,22 +19,31 @@ export default new Command()
       return false;
     }
 
+    const totalUsers = ctx.client.guilds.cache.reduce(
+      (acc, guild) => acc + guild.memberCount,
+      0
+    );
+
+    const guildId = ctx.guildId;
+
     const embed = new MessageEmbed()
-      .setTitle("Radium")
+      .setTitle("`🚀` Radium")
       .setDescription(
         `
-        Radium exposes information about your server to a RESTful API at \`radium.shivs.me/:guildId\`. 
+        Radium exposes information about your server to a RESTful API at [\`radium.shivs.me/:guildId\`](https://radium.shivs.me). By adding this bot to your server, you consent to your server being exposed over the API. If you change your mind, you can kick this bot and all data will be cleared.
 
-        **The URL for this server is [radium.shivs.me/${
-          ctx.guildId
-        }](https://radium.shivs.me/${ctx.guildId}).**
+        **\`🛠️\` Usage**
+        
+        > The amount of data required can be controlled by the \`include\` query parameter. If it is not specified, it defaults to \`basic\`. The 3 urls are listed below.
 
-        You can specify the scope of data required by the \`include\` query parameter. The 3 options are \`minimum\`, \`basic\` and \`all\`. If a query paramter is not specified, it defaults to \`basic\`.
+        > **minimum** - [\`radium.shivs.me/${guildId}?include=minimum\`](https://radium.shivs.me/${guildId}?include=minimum)
+        > **basic** - [\`radium.shivs.me/${guildId}\`](https://radium.shivs.me/${guildId})
+        > **all** - [\`radium.shivs.me/${guildId}?include=all\`](https://radium.shivs.me/${guildId}?include=all)
 
-        If you wish to stop exposing this server on the API, simply kick the bot and you are good to go. No data is stored by the bot itself but other applications may track and store data exposed by the API.
-
+        Currently monitoring \`${
+          ctx.client.guilds.cache.size
+        }\` guilds and can see \`${totalUsers}\` users.
         Developed by \`shiv#6819\` using \`discord.js(${version})\`
-
         Bot has been running since ${time(
           // @ts-ignore
           ctx.client.startedAt,
@@ -42,10 +51,7 @@ export default new Command()
         )} and has a websocket latency of \`${ctx.client.ws.ping}ms\`.
       `
       )
-      .setColor("#4ade80")
-      .setFooter({
-        text: `Currently monitoring ${ctx.client.guilds.cache.size} guilds`
-      });
+      .setColor("#4ade80");
 
     const row = new MessageActionRow().addComponents(
       new MessageButton()
@@ -55,7 +61,13 @@ export default new Command()
       new MessageButton()
         .setStyle("LINK")
         .setLabel("Invite me")
-        .setURL(`https://discord.com/oauth2/authorize?client_id=${ctx.applicationId}&permissions=2048&scope=bot%20applications.commands`)
+        .setURL(
+          `https://discord.com/oauth2/authorize?client_id=${ctx.applicationId}&permissions=2048&scope=bot%20applications.commands`
+        ),
+      new MessageButton()
+        .setStyle("LINK")
+        .setLabel("View source")
+        .setURL(`https://github.com/ffaanngg/radium`)
     );
     await ctx.reply({ embeds: [embed], components: [row] });
     return true;
