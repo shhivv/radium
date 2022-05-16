@@ -47,7 +47,7 @@ export default new Command()
           ctx.client.guilds.cache.size
          }\` guilds and can see \`${totalUsers}\` users.
          Developed by \`shiv#6819\` using \`discord.js(${version})\`
-         Bot has been running since ${time(
+         Bot has been online since ${time(
           // @ts-ignore
           ctx.client.startedAt,
           "R"
