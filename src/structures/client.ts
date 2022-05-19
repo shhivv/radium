@@ -4,6 +4,11 @@ import { Client, ClientOptions, CommandInteraction } from "discord.js";
 import startWebserver from "../api";
 import Command from "./command";
 
+interface IDeploy {
+  global: boolean;
+  dev: boolean;
+}
+
 export default class Radium extends Client {
   commands: Map<string, Command>;
   startedAt: Date;
@@ -74,18 +79,30 @@ export default class Radium extends Client {
     }
   }
 
-  async deployCommands(token: string, devGuildId: string, botClientId: string) {
+  async deployCommands(
+    token: string,
+    devGuildId: string,
+    botClientId: string,
+    deploy: IDeploy
+  ) {
     const rest = new REST({ version: "9" }).setToken(token);
-    await rest.put(Routes.applicationCommands(botClientId), {
-      body: Array.from(this.commands.values()).map((command) =>
-        command.toJSON()
-      ),
-    });
 
-    await rest.put(Routes.applicationGuildCommands(botClientId, devGuildId), {
-      body: Array.from(this.commands.values()).map((command) =>
-        command.toJSON()
-      ),
-    });
+    if (deploy.global) {
+      console.log("Deploying global (/) interaction commands");
+      await rest.put(Routes.applicationCommands(botClientId), {
+        body: Array.from(this.commands.values()).map((command) =>
+          command.toJSON()
+        ),
+      });
+    }
+
+    if (deploy.dev) {
+      console.log("Deploying development (/) interaction commands");
+      await rest.put(Routes.applicationGuildCommands(botClientId, devGuildId), {
+        body: Array.from(this.commands.values()).map((command) =>
+          command.toJSON()
+        ),
+      });
+    }
   }
 }

@@ -44,14 +44,14 @@ export default new Command()
          **\`⚡\` Metrics**
 
          Currently monitoring \`${
-          ctx.client.guilds.cache.size
+           ctx.client.guilds.cache.size
          }\` guilds and can see \`${totalUsers}\` users.
          Developed by \`shiv#6819\` with \`discord.js(${version})\`
          Bot has been online since ${time(
-          // @ts-ignore
-          ctx.client.startedAt,
-          "R"
-        )} and has a websocket latency of \`${ctx.client.ws.ping}ms\`.
+           // @ts-ignore
+           ctx.client.startedAt,
+           "R"
+         )} and has a websocket latency of \`${ctx.client.ws.ping}ms\`.
       `
       )
       .setColor("#4ade80");
