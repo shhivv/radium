@@ -9,11 +9,11 @@ import Command from "../structures/command";
 
 export default new Command()
   .setName("help")
-  .setDescription("🛠️ Help on using the bot")
+  .setDescription("🛠️ Guide on using the bot")
   .setCallback(async (ctx) => {
     if (!ctx.guild) {
       ctx.reply({
-        content: "This command cannot be used in DMs",
+        content: "This command can only be used in servers",
         ephemeral: true,
       });
       return false;
@@ -34,19 +34,19 @@ export default new Command()
 
         >>> **\`🛠️\` Usage**
 
-         The amount of data required can be controlled by the \`include\` query parameter. If it is not specified, it defaults to \`basic\`. The 3 urls are listed below.
+         The scope of information required can be controlled by the \`include\` query parameter. The three scopes are listed below.  
         
          **minimum** - [\`radium.shivs.me/${guildId}?include=minimum\`](https://radium.shivs.me/${guildId}?include=minimum)
          **basic** - [\`radium.shivs.me/${guildId}\`](https://radium.shivs.me/${guildId})
          **all** - [\`radium.shivs.me/${guildId}?include=all\`](https://radium.shivs.me/${guildId}?include=all)
 
          
-         **\`⚡\` Info**
+         **\`⚡\` Metrics**
 
          Currently monitoring \`${
           ctx.client.guilds.cache.size
          }\` guilds and can see \`${totalUsers}\` users.
-         Developed by \`shiv#6819\` using \`discord.js(${version})\`
+         Developed by \`shiv#6819\` with \`discord.js(${version})\`
          Bot has been online since ${time(
           // @ts-ignore
           ctx.client.startedAt,
@@ -59,7 +59,7 @@ export default new Command()
     const row = new MessageActionRow().addComponents(
       new MessageButton()
         .setStyle("LINK")
-        .setLabel("Join our support server")
+        .setLabel("Join the support server")
         .setURL("https://discord.gg/zEaeb7p58y"),
       new MessageButton()
         .setStyle("LINK")
