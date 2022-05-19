@@ -38,8 +38,8 @@ export default class Radium extends Client {
     });
     process.on("uncaughtRejection", console.error);
 
-    this.on("debug", console.debug);
-    this.on("warn", console.warn);
+    // this.on("debug", console.debug);
+    // this.on("warn", console.warn);
   }
 
   registerCommand(command: Command) {
@@ -55,11 +55,11 @@ export default class Radium extends Client {
       const res = await command.execute(interaction);
       if (res.commandResult) {
         console.log(
-          `Command ${interaction.commandName} invoked by ${interaction.user.tag}(${interaction.user.id}) ran successfully in ${res.timeTaken}ms`
+          `Command ${interaction.commandName} invoked by ${interaction.user.tag}(${interaction.user.id}) in ${interaction.guildId ?? "DMs"} ran successfully in ${res.timeTaken}ms`
         );
       } else {
         console.error(
-          `Command ${interaction.commandName} invoked by ${interaction.user} failed!`
+          `Command ${interaction.commandName} invoked by ${interaction.user.tag}(${interaction.user.id}) in ${interaction.guildId ?? "DMs"} failed!`
         );
       }
     } catch (e: any) {
