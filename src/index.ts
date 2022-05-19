@@ -3,8 +3,8 @@ import yargs from "yargs";
 import help from "./commands/help";
 import { clientOptions } from "./constants";
 
-function deploySettings(env?: string) {
-  switch (env ?? process.env.ENV) {
+function deploySettings() {
+  switch (process.env.ENV) {
     case "PROD":
       return {
         dev: false,
@@ -25,19 +25,17 @@ async function main() {
       token: { type: "string", default: process.env.DISCORD_TOKEN ?? "" },
       clientId: { type: "string", default: process.env.CLIENT_ID ?? "" },
       devGuildId: { type: "string", default: process.env.DEV_GUILD_ID ?? "" },
-      deploy: { type: "string", default: undefined },
+      deploy: { type: "boolean", default: false },
     })
     .parseSync();
 
   const { token, devGuildId, clientId, deploy } = flags;
   const client = new Radium(clientOptions).registerCommand(help);
 
-  await client.deployCommands(
-    token,
-    devGuildId,
-    clientId,
-    deploySettings(deploy)
-  );
+  if (deploy) {
+    await client.deployCommands(token, devGuildId, clientId, deploySettings());
+  }
+
   await client.login(token);
 }
 
