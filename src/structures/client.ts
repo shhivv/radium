@@ -38,8 +38,8 @@ export default class Radium extends Client {
     });
     process.on("uncaughtRejection", console.error);
 
-    // this.on("debug", console.debug);
-    // this.on("warn", console.warn);
+    this.on("debug", console.debug);
+    this.on("warn", console.warn);
   }
 
   registerCommand(command: Command) {
