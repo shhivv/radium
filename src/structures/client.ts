@@ -55,11 +55,17 @@ export default class Radium extends Client {
       const res = await command.execute(interaction);
       if (res.commandResult) {
         console.log(
-          `Command ${interaction.commandName} invoked by ${interaction.user.tag}(${interaction.user.id}) in ${interaction.guildId ?? "DMs"} ran successfully in ${res.timeTaken}ms`
+          `Command ${interaction.commandName} invoked by ${
+            interaction.user.tag
+          }(${interaction.user.id}) in ${
+            interaction.guildId ?? "DMs"
+          } ran successfully in ${res.timeTaken}ms`
         );
       } else {
         console.error(
-          `Command ${interaction.commandName} invoked by ${interaction.user.tag}(${interaction.user.id}) in ${interaction.guildId ?? "DMs"} failed!`
+          `Command ${interaction.commandName} invoked by ${
+            interaction.user.tag
+          }(${interaction.user.id}) in ${interaction.guildId ?? "DMs"} failed!`
         );
       }
     } catch (e: any) {

@@ -41,12 +41,15 @@ export default new Command()
 
         >>> **\`🛠️\` Usage**
 
+        **Guild**
          The scope of information required can be controlled by the \`include\` query parameter. The three scopes are listed below.  
         
          **minimum** - [\`${apiBaseUrl}/${guildId}?include=minimum\`](https://${apiBaseUrl}/${guildId}?include=minimum)
          **basic** - [\`${apiBaseUrl}/${guildId}\`](https://${apiBaseUrl}/${guildId})
          **all** - [\`${apiBaseUrl}/${guildId}?include=all\`](https://${apiBaseUrl}/${guildId}?include=all)
 
+         **Member**
+         **all** - [\`${apiBaseUrl}/${guildId}/:userId\`](https://${apiBaseUrl}/${guildId}/${ctx.user.id})
          
          **\`⚡\` Metrics**
 

@@ -1,8 +1,13 @@
-import { Client, Guild } from "discord.js";
+import { Client, Guild, GuildMember } from "discord.js";
 import fastify from "fastify";
 
-interface IParams {
+interface IGuildParams {
   id: string;
+}
+
+interface IMemberParams {
+  guildId: string;
+  memberId: string;
 }
 
 interface IQueryString {
@@ -83,7 +88,7 @@ export default function (client: Client) {
   });
 
   api.get<{
-    Params: IParams;
+    Params: IGuildParams;
     Querystring: IQueryString;
   }>("/:id", async (req, reply) => {
     let guild: Guild;
@@ -114,6 +119,56 @@ export default function (client: Client) {
     return {
       ...bare,
       ...templates[include](guild),
+    };
+  });
+
+  api.get<{
+    Params: IMemberParams;
+  }>("/:guildId/:memberId", async (req, reply) => {
+    let guild: Guild;
+    let { guildId, memberId } = req.params;
+
+    try {
+      guild =
+        client.guilds.cache.get(guildId) ??
+        (await client.guilds.fetch(guildId));
+    } catch {
+      reply.code(404).send({
+        monitoringGuild: false,
+        memberAvailable: false,
+      });
+      return;
+    }
+
+    let member: GuildMember;
+
+    try {
+      member =
+        guild.members.cache.get(memberId) ??
+        (await guild.members.fetch(memberId));
+    } catch (e) {
+      reply.code(404).send({
+        monitoringGuild: true,
+        memberAvailable: false,
+      });
+      return;
+    }
+
+    return {
+      monitoringGuild: true,
+      memberAvailable: true,
+      guild: {
+        monitoringSince: guild.joinedTimestamp,
+        id: guild.id,
+      },
+      member: {
+        id: member.id,
+        name: member.user.username,
+        discriminator: member.user.discriminator,
+        createdTimestamp: member.user.createdTimestamp,
+        joinedTimestamp: member.joinedTimestamp,
+        roles: member.roles.cache,
+      },
     };
   });
 
